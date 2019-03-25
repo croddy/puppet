@@ -68,7 +68,7 @@ module Lookup
     # @return [Array<ResolvedLocation>] Array of resolved paths
     def expand_uris(declared_uris, lookup_invocation)
       declared_uris.map do |declared_uri|
-        uri = URI(interpolate(declared_uri, lookup_invocation, false))
+        uri = URI(URI.escape(interpolate(declared_uri, lookup_invocation, false)))
         ResolvedLocation.new(declared_uri, uri, true)
       end
     end
